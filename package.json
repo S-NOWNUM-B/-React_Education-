@@ -1,27 +1,8 @@
 {
   "name": "react-learning",
   "version": "1.0.0",
-  "description": "React Learning Path - теоретические материалы и практические задания",
-  "main": "index.js",
-  "scripts": {
-    "dev": "node -v",
-    "start": "echo 'Используйте это для запуска проектов из папки practice/'",
-    "test": "echo 'Test framework не установлен'"
-  },
-  "keywords": [
-    "react",
-    "learning",
-    "education",
-    "javascript"
-  ],
+  "description": "React Learning Path - TypeScript + Vite. Каждый проект имеет свой собственный package.json и конфигурацию.",
+  "private": true,
   "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.5.0"
-  }
+  "license": "MIT"
 }
