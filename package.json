@@ -1,8 +1,0 @@
-{
-  "name": "react-learning",
-  "version": "1.0.0",
-  "description": "React Learning Path - TypeScript + Vite. Каждый проект имеет свой собственный package.json и конфигурацию.",
-  "private": true,
-  "author": "",
-  "license": "MIT"
-}
