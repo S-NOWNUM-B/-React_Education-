@@ -1,3 +1,5 @@
+import Button from "./components/Button/Button";
+
 export default function App() {
   return (
     <>
@@ -6,6 +8,7 @@ export default function App() {
         <p className="text-red-400 dark:text-pink-400">
           Это мой первый React-приложение.
         </p>
+        <Button />
       </div>
     </>
   );
