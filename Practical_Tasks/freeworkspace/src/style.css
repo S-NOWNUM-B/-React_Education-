@@ -1,7 +1,1 @@
 @import "tailwindcss";
-
-@layer base {
-  body {
-    background-color: var(--color-gray-700);
-  }
-}
