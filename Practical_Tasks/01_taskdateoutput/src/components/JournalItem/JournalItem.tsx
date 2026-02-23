@@ -1,11 +1,17 @@
 import "./JournalItems.css";
 
-function JournalItem({ title, text, date }) {
+interface JournalItemProps {
+  title: string;
+  text: string;
+  date: Date;
+}
+
+function JournalItem({ title, text, date }: JournalItemProps) {
   return (
     <div className="journal-item">
       <h2 className="journal-item__header">{title}</h2>
       <h2 className="journal-item__body">
-        <div className="journal-item__date">{date.toLocaleDateString()}</div>
+        <div className="journal-item__date">{date.toString()}</div>
         <div className="journal-item__text">{text}</div>
       </h2>
     </div>

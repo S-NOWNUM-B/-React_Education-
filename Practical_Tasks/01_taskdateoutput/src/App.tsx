@@ -1,35 +1,40 @@
 import Button from "./components/Button/Button";
 import JournalItem from "./components/JournalItem/JournalItem";
+import "./App.css";
 
 function App() {
   const data = [
     {
-      title: "Заголовок 1",
-      text: "Какой-то текст 1",
-      date: new Date(),
+      title: "Подготовка к обновлению курсов",
+      text: "Горячие походы открывают удивительные природные ландшафт",
+      date: new Date("2023-07-18T17:23:14+03:00"),
     },
     {
-      title: "Заголовок 2",
-      text: "Какой-то текст 2",
-      date: new Date(),
-    },
-    {
-      title: "Заголовок 3",
-      text: "Какой-то текст 3",
-      date: new Date(),
+      title: "Подготовка к обновлению курсов",
+      text: "Горячие походы открывают удивительные природные ландшафт",
+      date: new Date("2023-07-18T17:23:14+03:00"),
     },
   ];
   return (
-    <>
-      <h1>Заголовок</h1>
-      <p>Какой-то текст</p>
-      <JournalItem
-        title={data[0].title}
-        text={data[0].text}
-        date={data[0].date}
-      />
-      <Button />
-    </>
+    <div className="app">
+      <div className="app__container">
+        <h1 className="app__title">Заголовок</h1>
+        <p className="app__text">Какой-то текст</p>
+        <Button />
+        <div className="app__journal-list">
+          <JournalItem
+            title={data[0].title}
+            text={data[0].text}
+            date={data[0].date}
+          />
+          <JournalItem
+            title={data[1].title}
+            text={data[1].text}
+            date={data[1].date}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 

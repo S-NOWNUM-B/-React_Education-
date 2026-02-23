@@ -2,7 +2,7 @@
 
 @layer base {
   .journal-item {
-    @apply rounded-[3px] bg-white/3 text-white p-5;
+    @apply rounded-[3px] bg-[#3a3a3a] text-white p-5;
   }
 
   .journal-item__header,
