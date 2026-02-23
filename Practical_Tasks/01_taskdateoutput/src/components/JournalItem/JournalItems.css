@@ -1,1 +1,20 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@layer base {
+  .journal-item {
+    @apply rounded-[3px] bg-white/3 text-white p-5;
+  }
+
+  .journal-item__header,
+  .journal-item__text {
+    @apply text-[18px] font-semibold leading-7;
+  }
+
+  .journal-item__date {
+    @apply text-white/40 font-['Source_Sans_Pro'] text-[16px] font-normal leading-normal;
+  }
+
+  .journal-item__body {
+    @apply flex flex-col gap-2;
+  }
+}
