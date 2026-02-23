@@ -6,7 +6,7 @@
   }
 
   .app__container {
-    @apply flex flex-col gap-4 w-full max-w-[900px] items-start;
+    @apply flex flex-col gap-4 w-full max-w-900px items-start;
   }
 
   .app__title {
