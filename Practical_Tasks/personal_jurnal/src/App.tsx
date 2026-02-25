@@ -1,6 +1,11 @@
 import "./App.css";
 
 import LeftPanel from "./layouts/LeftPanel/LeftPanel";
+import Header from "./components/Header/Header";
+import JornualList from "./components/JornualList/JornualList";
+import JournalItem from "./components/JournalItem/JournalItem";
+import CardButton from "./components/CardButton/CardButton";
+import Body from "./layouts/Body/Body";
 
 function App() {
   const data = [
@@ -18,11 +23,23 @@ function App() {
   return (
     <div className="app">
       <LeftPanel>
-
+        <Header />
+        <JornualList>
+          <CardButton>
+            <JournalItem
+              title={data[0].title}
+              text={data[0].text}
+              date={data[0].date}
+            />
+            <JournalItem
+              text={data[1].text}
+              title={data[1].title}
+              date={data[1].date}
+            />
+          </CardButton>
+        </JornualList>
       </LeftPanel>
-      <Body>
-
-      </Body>
+      <Body>Body</Body>
     </div>
   );
 }
