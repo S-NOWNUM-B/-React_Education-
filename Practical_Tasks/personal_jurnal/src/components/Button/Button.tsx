@@ -1,7 +1,15 @@
 import "./Button.css";
 
 function Button() {
-  return <button className="button accent">Сохранить</button>;
+  const clickHello = () => {
+    console.log("Hello!");
+  };
+
+  return (
+    <button onClick={clickHello} className="button accent">
+      Сохранить
+    </button>
+  );
 }
 
 export default Button;
