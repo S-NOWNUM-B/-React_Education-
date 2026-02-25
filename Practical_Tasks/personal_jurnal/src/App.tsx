@@ -1,12 +1,12 @@
 import "./App.css";
 
-import LeftPanel from "./layouts/LeftPanel/LeftPanel";
 import Header from "./components/Header/Header";
-import JornualList from "./components/JornualList/JornualList";
-import JournalItem from "./components/JournalItem/JournalItem";
-import CardButton from "./components/CardButton/CardButton";
+import LeftPanel from "./layouts/LeftPanel/LeftPanel";
 import Body from "./layouts/Body/Body";
+import CardButton from "./components/CardButton/CardButton";
 import JournalAddButton from "./components/JornualAddButton/JornualAddButton";
+import JournalItem from "./components/JournalItem/JournalItem";
+import JornualList from "./components/JornualList/JornualList";
 
 function App() {
   const data = [
@@ -33,6 +33,8 @@ function App() {
               text={data[0].text}
               date={data[0].date}
             />
+          </CardButton>
+          <CardButton>
             <JournalItem
               text={data[1].text}
               title={data[1].title}
