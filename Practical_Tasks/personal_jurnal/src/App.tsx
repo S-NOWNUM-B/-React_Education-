@@ -1,7 +1,8 @@
 import Button from "./components/Button/Button";
 import JournalItem from "./components/JournalItem/JournalItem";
-import "./App.css";
 import CardButton from "./components/CardButton/CardButton";
+
+import "./App.css";
 
 function App() {
   const data = [

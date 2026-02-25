@@ -1,3 +1,5 @@
+import "./JournalItem.css";
+
 interface JournalItemProps {
   title: string;
   text: string;
@@ -9,14 +11,10 @@ function JournalItem({ title, text, date }: JournalItemProps) {
 
   return (
     <>
-      <h2 className="text-lg font-semibold leading-7">{title}</h2>
-      <h2 className="flex gap-2.5">
-        <div className="text-white/40 text-base font-normal leading-normal">
-          {formatedDate}
-        </div>
-        <div className="text-white/60 text-base font-normal leading-normal overflow-hidden">
-          {text}
-        </div>
+      <h2 className="journal-item__header">{title}</h2>
+      <h2 className="journal-item__body">
+        <div className="journal-item__date">{formatedDate}</div>
+        <div className="journal-item__text">{text}</div>
       </h2>
     </>
   );
