@@ -1,11 +1,12 @@
 import "./LeftPanel.css";
+import type { ReactNode } from "react";
 
-function LeftPanel({ children }) {
-  return (
-    <div className="left-panel">
-      {children}
-    </div>
-  );
+interface LeftPanelProps {
+  children: ReactNode;
+}
+
+function LeftPanel({ children }: LeftPanelProps) {
+  return <div className="left-panel">{children}</div>;
 }
 
 export default LeftPanel;

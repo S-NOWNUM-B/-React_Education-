@@ -1,7 +1,11 @@
 import "./JornualList.css";
 import type { ReactNode } from "react";
 
-function JornualList({ children }: { children: ReactNode }) {
+interface JornualListProps {
+  children: ReactNode;
+}
+
+function JornualList({ children }: JornualListProps) {
   return <div className="journal-list">{children}</div>;
 }
 

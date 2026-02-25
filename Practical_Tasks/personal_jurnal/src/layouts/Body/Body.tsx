@@ -1,11 +1,12 @@
 import "./Body.css";
+import type { ReactNode } from "react";
 
-function Body({ children }) {
-  return (
-    <div className="body">
-      {children}
-    </div>
-  );
+interface BodyProps {
+  children: ReactNode;
+}
+
+function Body({ children }: BodyProps) {
+  return <div className="body">{children}</div>;
 }
 
 export default Body;
