@@ -1,15 +1,8 @@
-import type { ReactNode } from "react";
-
 import "./CardButton.css";
 
-interface CardButtonProps {
-  children: ReactNode;
-  className?: string;
-}
-
-function CardButton({ children, className = "" }: CardButtonProps) {
+function CardButton({ children }) {
   return (
-    <button className={`card-button ${className}`}>
+    <button className="card-button">
 			{children}
 		</button>
   );

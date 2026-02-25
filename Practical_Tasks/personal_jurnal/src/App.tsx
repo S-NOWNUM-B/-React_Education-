@@ -1,8 +1,6 @@
-import Button from "./components/Button/Button";
-import JournalItem from "./components/JournalItem/JournalItem";
-import CardButton from "./components/CardButton/CardButton";
-
 import "./App.css";
+
+import LeftPanel from "./layouts/LeftPanel/LeftPanel";
 
 function App() {
   const data = [
@@ -19,28 +17,12 @@ function App() {
   ];
   return (
     <div className="app">
-      <div className="app__container">
-        <h1 className="app__title">Заголовок</h1>
-        <p className="app__text">Какой-то текст</p>
-        <Button />
-        <CardButton>+ Новое воспоминание</CardButton>
-        <div className="app__journal-list">
-          <CardButton>
-            <JournalItem
-              title={data[0].title}
-              text={data[0].text}
-              date={data[0].date}
-            />
-          </CardButton>
-          <CardButton>
-            <JournalItem
-              title={data[1].title}
-              text={data[1].text}
-              date={data[1].date}
-            />
-          </CardButton>
-        </div>
-      </div>
+      <LeftPanel>
+
+      </LeftPanel>
+      <Body>
+
+      </Body>
     </div>
   );
 }

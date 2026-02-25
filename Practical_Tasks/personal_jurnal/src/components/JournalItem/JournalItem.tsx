@@ -1,12 +1,6 @@
 import "./JournalItem.css";
 
-interface JournalItemProps {
-  title: string;
-  text: string;
-  date: Date;
-}
-
-function JournalItem({ title, text, date }: JournalItemProps) {
+function JournalItem({ title, text, date }) {
   const formatedDate = new Intl.DateTimeFormat("ru-RU").format(date);
 
   return (
