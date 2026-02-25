@@ -6,6 +6,7 @@ import JornualList from "./components/JornualList/JornualList";
 import JournalItem from "./components/JournalItem/JournalItem";
 import CardButton from "./components/CardButton/CardButton";
 import Body from "./layouts/Body/Body";
+import JournalAddButton from "./components/JornualAddButton/JornualAddButton";
 
 function App() {
   const data = [
@@ -24,6 +25,7 @@ function App() {
     <div className="app">
       <LeftPanel>
         <Header />
+        <JournalAddButton />
         <JornualList>
           <CardButton>
             <JournalItem
