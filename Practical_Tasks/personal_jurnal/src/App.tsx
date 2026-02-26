@@ -7,6 +7,7 @@ import CardButton from "./components/CardButton/CardButton";
 import JournalAddButton from "./components/JornualAddButton/JornualAddButton";
 import JournalItem from "./components/JournalItem/JournalItem";
 import JornualList from "./components/JornualList/JornualList";
+import JournalForm from "./components/JournalForm/JournalForm";
 
 function App() {
   const data = [
@@ -44,7 +45,9 @@ function App() {
           </CardButton>
         </JornualList>
       </LeftPanel>
-      <Body>body</Body>
+      <Body>
+        <JournalForm />
+      </Body>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import "./JournalFrom.css";
 
 import { useState } from "react";
+import Button from "../Button/Button.tsx";
 
 function JournalForm() {
   const [inputData, setInputData] = useState("");
@@ -11,7 +12,13 @@ function JournalForm() {
 
   return (
     <>
-      <input type="text" value={inputData} onChange={inputChange} />
+      <form className="journal-form">
+		<input type="text" name="title" />
+        <input type="date" name="date" />
+        <input type="text" name="tag" value={inputData} onChange={inputChange} />
+        <textarea name="post" id="" cols="30" rows="10" />
+		<Button text="Сохранить" />
+      </form>
     </>
   );
 }
