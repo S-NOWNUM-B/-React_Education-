@@ -1,7 +1,5 @@
 import "./App.css";
 
-import { useState } from "react";
-
 import Header from "./components/Header/Header";
 import LeftPanel from "./layouts/LeftPanel/LeftPanel";
 import Body from "./layouts/Body/Body";
@@ -23,12 +21,6 @@ function App() {
       date: new Date("2023-07-18T17:23:14+03:00"),
     },
   ];
-
-  const [inputData, setInputData] = useState("");
-
-  const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputData(event.target.value);
-  };
 
   return (
     <div className="app">
@@ -52,9 +44,7 @@ function App() {
           </CardButton>
         </JornualList>
       </LeftPanel>
-      <Body>
-        <input type="text" value={inputData} onChange={inputChange} />
-      </Body>
+      <Body>body</Body>
     </div>
   );
 }
