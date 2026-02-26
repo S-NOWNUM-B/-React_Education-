@@ -12,7 +12,9 @@ function JournalForm() {
 
   const addJournalItem = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
+    const formData = new FormData(e.target as HTMLFormElement);
+    const FormProps = Object.fromEntries(formData);
+    console.log(FormProps);
   };
 
   return (
