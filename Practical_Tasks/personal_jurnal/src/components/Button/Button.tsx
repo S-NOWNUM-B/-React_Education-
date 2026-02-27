@@ -1,7 +1,7 @@
 import "./Button.css";
 
-function Button({ text }: { text: string }) {
-  return <button className="button accent">{text}</button>;
+function Button({ text, onClick }: { text: string; onClick: () => void }) {
+  return <button className="button accent" onClick={onClick}>{text}</button>;
 }
 
 export default Button;

@@ -1,7 +1,7 @@
 import "./JournalForm.css";
 
 import { useState } from "react";
-import Button from "../Button/Button";
+import Button from "../Button/Button.tsx";
 
 function JournalForm() {
   const [inputData, setInputData] = useState("");
@@ -29,7 +29,7 @@ function JournalForm() {
           onChange={inputChange}
         />
         <textarea name="post" cols={30} rows={10} />
-        <Button text="Сохранить" />
+        <Button text="Сохранить" onClick={() => console.log("Нажали")} />
       </form>
     </>
   );
