@@ -7,7 +7,7 @@ interface CardButtonProps {
 }
 
 function CardButton({ children, className }: CardButtonProps) {
-  const cl = "card-button" + (className ? " " + className : "");
+  const cl = className ? `card-button ${className}` : "card-button";
 
   return <button className={cl}>{children}</button>;
 }

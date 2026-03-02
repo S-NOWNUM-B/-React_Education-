@@ -14,7 +14,7 @@ import JournalForm from "./components/JournalForm/JournalForm";
 interface JournalItem {
   title: string;
   text: string;
-  date: Date;
+  date: Date | string;
 }
 
 const INITIAL_DATA = [
@@ -50,8 +50,8 @@ function App() {
         <Header />
         <JournalAddButton />
         <JornualList>
-          {items.map((el) => (
-            <CardButton key={el.title}>
+          {items.map((el, index) => (
+            <CardButton key={index}>
               <JournalItem title={el.title} text={el.text} date={el.date} />
             </CardButton>
           ))}
