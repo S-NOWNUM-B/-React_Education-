@@ -23,16 +23,14 @@ function App() {
         <p className="app__text">Какой-то текст</p>
         <Button />
         <div className="app__journal-list">
-          <JournalItem
-            title={data[0].title}
-            text={data[0].text}
-            date={data[0].date}
-          />
-          <JournalItem
-            title={data[1].title}
-            text={data[1].text}
-            date={data[1].date}
-          />
+          {data.map((item, index) => (
+            <JournalItem
+              key={index}
+              title={item.title}
+              text={item.text}
+              date={item.date}
+            />
+          ))}
         </div>
       </div>
     </div>
