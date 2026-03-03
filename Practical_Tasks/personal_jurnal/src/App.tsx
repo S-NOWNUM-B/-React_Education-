@@ -12,6 +12,7 @@ import JornualList from "./components/JornualList/JornualList";
 import JournalForm from "./components/JournalForm/JournalForm";
 
 interface JournalItem {
+  id: number;
   title: string;
   text: string;
   date: Date | string;
@@ -19,11 +20,13 @@ interface JournalItem {
 
 const INITIAL_DATA = [
   {
+    id: 1,
     title: "Подготовка к обновлению курсов",
     text: "Горные походы открывают удивительные природные ландшафт",
     date: new Date("2023-07-18T17:23:14+03:00"),
   },
   {
+    id: 2,
     title: "Поход в годы",
     text: "Думал, что очень много времени",
     date: new Date("2023-07-18T17:23:14+03:00"),
@@ -33,15 +36,29 @@ const INITIAL_DATA = [
 function App() {
   const [items, setItems] = useState(INITIAL_DATA);
 
-  const addItem = (item: JournalItem) => {
+  const addItem = (item: {
+    title: string;
+    text: string;
+    date: string;
+    tag?: string;
+  }) => {
     setItems((oldItems) => [
       ...oldItems,
       {
         text: item.text,
         title: item.title,
         date: new Date(item.date),
+        id: Math.max(...oldItems.map((i) => i.id), 0) + 1,
       },
     ]);
+  };
+
+  const sortItems = (a: JournalItem, b: JournalItem) => {
+    const dateA =
+      a.date instanceof Date ? a.date.getTime() : new Date(a.date).getTime();
+    const dateB =
+      b.date instanceof Date ? b.date.getTime() : new Date(b.date).getTime();
+    return dateB - dateA;
   };
 
   return (
@@ -50,8 +67,8 @@ function App() {
         <Header />
         <JournalAddButton />
         <JornualList>
-          {items.map((el, index) => (
-            <CardButton key={index}>
+          {items.sort(sortItems).map((el) => (
+            <CardButton key={el.id}>
               <JournalItem title={el.title} text={el.text} date={el.date} />
             </CardButton>
           ))}
