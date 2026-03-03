@@ -5,13 +5,11 @@ import { useState } from "react";
 import Header from "./components/Header/Header";
 import LeftPanel from "./layouts/LeftPanel/LeftPanel";
 import Body from "./layouts/Body/Body";
-import CardButton from "./components/CardButton/CardButton";
 import JournalAddButton from "./components/JornualAddButton/JornualAddButton";
-import JournalItem from "./components/JournalItem/JournalItem";
 import JornualList from "./components/JornualList/JornualList";
 import JournalForm from "./components/JournalForm/JournalForm";
 
-interface JournalItem {
+export interface JournalItem {
   id: number;
   title: string;
   text: string;
@@ -53,26 +51,12 @@ function App() {
     ]);
   };
 
-  const sortItems = (a: JournalItem, b: JournalItem) => {
-    const dateA =
-      a.date instanceof Date ? a.date.getTime() : new Date(a.date).getTime();
-    const dateB =
-      b.date instanceof Date ? b.date.getTime() : new Date(b.date).getTime();
-    return dateB - dateA;
-  };
-
   return (
     <div className="app">
       <LeftPanel>
         <Header />
         <JournalAddButton />
-        <JornualList>
-          {items.sort(sortItems).map((el) => (
-            <CardButton key={el.id}>
-              <JournalItem title={el.title} text={el.text} date={el.date} />
-            </CardButton>
-          ))}
-        </JornualList>
+        <JornualList items={items} />
       </LeftPanel>
       <Body>
         <JournalForm onSubmit={addItem} />
