@@ -1,40 +1,36 @@
 import "./JornualList.css";
+import { useMemo } from "react";
 
 import CardButton from "../CardButton/CardButton";
 import JournalItem from "../JournalItem/JournalItem";
-
-interface JournalItemData {
-  id: number;
-  title: string;
-  text: string;
-  date: Date | string;
-}
+import type { JournalItem as JournalItemType } from "../../types";
+import { parseDate } from "../../utils/date";
 
 interface JornualListProps {
-  items: JournalItemData[];
+  items: JournalItemType[];
 }
 
 function JornualList({ items }: JornualListProps) {
+  const sortedItems = useMemo(() => {
+    return [...items].sort((a, b) => {
+      const dateA = parseDate(a.date).getTime();
+      const dateB = parseDate(b.date).getTime();
+      return dateB - dateA;
+    });
+  }, [items]);
+
   if (items.length === 0) {
     return <p>Записей пока нет, добавьте новую</p>;
   }
 
-  const sortItems = (a: JournalItemData, b: JournalItemData) => {
-    const dateA =
-      a.date instanceof Date ? a.date.getTime() : new Date(a.date).getTime();
-    const dateB =
-      b.date instanceof Date ? b.date.getTime() : new Date(b.date).getTime();
-    return dateB - dateA;
-  };
-
   return (
     <>
-      {items.sort(sortItems).map((el) => (
-        <CardButton key={el.id}>
+      {sortedItems.map((item) => (
+        <CardButton key={item.id}>
           <JournalItem
-            title={el.title}
-            text={el.text}
-            date={el.date instanceof Date ? el.date : new Date(el.date)}
+            title={item.title}
+            text={item.text}
+            date={parseDate(item.date)}
           />
         </CardButton>
       ))}

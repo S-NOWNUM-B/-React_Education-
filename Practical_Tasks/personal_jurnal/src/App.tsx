@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import Header from "./components/Header/Header";
 import LeftPanel from "./layouts/LeftPanel/LeftPanel";
@@ -9,14 +9,9 @@ import JournalAddButton from "./components/JornualAddButton/JornualAddButton";
 import JornualList from "./components/JornualList/JornualList";
 import JournalForm from "./components/JournalForm/JournalForm";
 
-export interface JournalItem {
-  id: number;
-  title: string;
-  text: string;
-  date: Date | string;
-}
+import type { JournalItem, JournalFormData } from "./types";
 
-const INITIAL_DATA = [
+const INITIAL_DATA: JournalItem[] = [
   {
     id: 1,
     title: "Подготовка к обновлению курсов",
@@ -32,24 +27,25 @@ const INITIAL_DATA = [
 ];
 
 function App() {
-  const [items, setItems] = useState(INITIAL_DATA);
+  const [items, setItems] = useState<JournalItem[]>(INITIAL_DATA);
 
-  const addItem = (item: {
-    title: string;
-    text: string;
-    date: string;
-    tag?: string;
-  }) => {
-    setItems((oldItems) => [
-      ...oldItems,
-      {
-        text: item.text,
-        title: item.title,
-        date: new Date(item.date),
-        id: Math.max(...oldItems.map((i) => i.id), 0) + 1,
-      },
-    ]);
-  };
+  const addItem = useCallback((item: JournalFormData) => {
+    setItems((prevItems) => {
+      const maxId =
+        prevItems.length > 0 ? Math.max(...prevItems.map((i) => i.id)) : 0;
+
+      return [
+        ...prevItems,
+        {
+          id: maxId + 1,
+          title: item.title,
+          text: item.text,
+          date: new Date(item.date),
+          tag: item.tag,
+        },
+      ];
+    });
+  }, []);
 
   return (
     <div className="app">
