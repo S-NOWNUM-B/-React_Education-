@@ -1,7 +1,16 @@
 import "./Button.css";
+import type { ComponentProps } from "react";
 
-function Button({ text, onClick }: { text: string; onClick: () => void }) {
-  return <button className="button accent" onClick={onClick}>{text}</button>;
+interface ButtonProps extends ComponentProps<"button"> {
+  text: string;
+}
+
+function Button({ text, ...props }: ButtonProps) {
+  return (
+    <button className="button accent" {...props}>
+      {text}
+    </button>
+  );
 }
 
 export default Button;

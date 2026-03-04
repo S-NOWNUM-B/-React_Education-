@@ -1,4 +1,6 @@
 import "./JournalItem.css";
+import { useMemo } from "react";
+import { formatDate } from "../../utils/date";
 
 interface JournalItemProps {
   title: string;
@@ -7,16 +9,18 @@ interface JournalItemProps {
 }
 
 function JournalItem({ title, text, date }: JournalItemProps) {
-  const formatedDate = new Intl.DateTimeFormat("ru-RU").format(date);
+  const formattedDate = useMemo(() => formatDate(date), [date]);
 
   return (
-    <div>
+    <article>
       <h2 className="journal-item__header">{title}</h2>
       <div className="journal-item__body">
-        <div className="journal-item__date">{formatedDate}</div>
-        <div className="journal-item__text">{text}</div>
+        <time className="journal-item__date" dateTime={date.toISOString()}>
+          {formattedDate}
+        </time>
+        <p className="journal-item__text">{text}</p>
       </div>
-    </div>
+    </article>
   );
 }
 
