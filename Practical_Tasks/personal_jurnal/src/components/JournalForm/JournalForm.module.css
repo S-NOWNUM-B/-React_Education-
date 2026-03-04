@@ -19,21 +19,30 @@
   color: #ffffff;
 }
 
+.invalid:focus {
+  border-color: #e0234e;
+  background-color: rgb(118, 23, 23);
+}
+
+.invalid::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .inputTitle {
+  width: 100%;
   border: none;
   background: none;
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  font-family: "Source Sans 3" sans-serif;
-  border-bottom: 1px solid #ccc;
+  font-family: "Source Sans 3", sans-serif;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .form-label {
   display: flex;
   align-items: center;
-  gap: 20px;
   min-width: 150px;
 }
 

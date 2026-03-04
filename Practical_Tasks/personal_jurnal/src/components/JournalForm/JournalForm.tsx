@@ -102,7 +102,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           )}
         />
       </div>
-      <div className={styles["from-row"]}>
+      <div className={styles["form-row"]}>
         <label htmlFor="date" className={styles["form-label"]}>
           <img src="/calendar.svg" alt="иконка календаря" />
           <span>Дата</span>
@@ -118,7 +118,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           )}
         />
       </div>
-      <div>
+      <div className={styles["form-row"]}>
         <label htmlFor="tag" className={styles["form-label"]}>
           <img src="/folder.svg" alt="иконка папки" />
           <span>Метки</span>
