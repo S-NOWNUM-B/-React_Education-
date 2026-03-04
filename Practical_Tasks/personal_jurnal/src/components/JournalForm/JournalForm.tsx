@@ -1,10 +1,10 @@
 import styles from "./JournalForm.module.css";
+import cn from "classnames";
 
 import { type ComponentProps, useState } from "react";
 
 import Button from "../Button/Button";
 import type { JournalFormData } from "../../types";
-import { cn } from "../../utils/classNames";
 
 interface JournalFormProps {
   onSubmit: (item: JournalFormData) => void;
