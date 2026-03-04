@@ -89,14 +89,19 @@ function JournalForm({ onSubmit }: JournalFormProps) {
 
   return (
     <form className={styles.journalForm} onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="title"
-        placeholder="Заголовок"
-        value={formData.title}
-        onChange={handleChange}
-        className={cn(styles.input, !formValidState.title && styles.invalid)}
-      />
+      <div>
+        <input
+          type="text"
+          name="title"
+          placeholder="Заголовок"
+          value={formData.title}
+          onChange={handleChange}
+          className={cn(
+            styles.inputTitle,
+            !formValidState.title && styles.invalid,
+          )}
+        />
+      </div>
       <input
         type="date"
         name="date"
