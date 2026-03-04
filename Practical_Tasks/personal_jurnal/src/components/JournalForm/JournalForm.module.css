@@ -4,24 +4,13 @@
   gap: 30px;
 }
 
-.input {
-  padding: 12px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  color: #333;
-  transition: all 0.2s ease;
-}
-
 .invalid {
-  border: 2px solid #e0234e;
-  background-color: rgb(118, 23, 23);
-  color: #ffffff;
+  border-bottom: 2px solid #e0234e !important;
+  color: #ffffff !important;
 }
 
 .invalid:focus {
   border-color: #e0234e;
-  background-color: rgb(118, 23, 23);
 }
 
 .invalid::placeholder {
@@ -38,6 +27,7 @@
   line-height: normal;
   font-family: "Source Sans 3", sans-serif;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 
 .form-label {

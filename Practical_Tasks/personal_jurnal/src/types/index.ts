@@ -8,7 +8,7 @@ export interface JournalItem {
 
 export interface JournalFormData {
   title: string;
-  text: string;
+  post: string;
   date: string;
   tag: string;
 }

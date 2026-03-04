@@ -12,14 +12,14 @@ interface JournalFormProps {
 function JournalForm({ onSubmit }: JournalFormProps) {
   const [formData, setFormData] = useState<JournalFormData>({
     title: "",
-    text: "",
+    post: "",
     date: "",
     tag: "",
   });
 
   const [formValidState, setFormValidState] = useState({
     title: true,
-    text: true,
+    post: true,
     date: true,
     tag: true,
   });
@@ -31,14 +31,14 @@ function JournalForm({ onSubmit }: JournalFormProps) {
 
     if (
       !formData.title?.trim().length ||
-      !formData.text?.trim().length ||
+      !formData.post?.trim().length ||
       !formData.date ||
       !formData.tag?.trim().length
     ) {
       setFormValidState((state) => ({
         ...state,
         title: !formData.title?.trim().length ? false : true,
-        text: !formData.text?.trim().length ? false : true,
+        post: !formData.post?.trim().length ? false : true,
         date: !formData.date ? false : true,
         tag: !formData.tag?.trim().length ? false : true,
       }));
@@ -47,7 +47,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
       setFormValidState((state) => ({
         ...state,
         title: true,
-        text: true,
+        post: true,
         date: true,
         tag: true,
       }));
@@ -62,7 +62,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     // Очистка формы после отправки
     setFormData({
       title: "",
-      text: "",
+      post: "",
       date: "",
       tag: "",
     });
@@ -70,7 +70,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     // Сброс состояния валидации
     setFormValidState({
       title: true,
-      text: true,
+      post: true,
       date: true,
       tag: true,
     });
@@ -127,13 +127,13 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         />
       </div>
       <textarea
-        name="text"
+        name="post"
         cols={30}
         rows={10}
         placeholder="Текст записи"
-        value={formData.text}
+        value={formData.post}
         onChange={handleChange}
-        className={`${styles["input"]} ${formValidState.text ? "" : styles["invalid"]}`}
+        className={`${styles["input"]} ${formValidState.post ? "" : styles["invalid"]}`}
       />
       <Button text="Сохранить" type="submit" />
     </form>

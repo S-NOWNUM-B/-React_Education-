@@ -42,7 +42,7 @@ function App() {
           id: maxId + 1,
           tag: item.tag,
           title: item.title,
-          text: item.text,
+          text: item.post,
           date: new Date(item.date),
         },
       ];
