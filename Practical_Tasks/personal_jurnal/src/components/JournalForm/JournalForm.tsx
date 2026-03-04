@@ -95,7 +95,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           placeholder="Заголовок"
           value={formData.title}
           onChange={handleChange}
-          className={`${styles["input"]} ${formValidState.title ? "" : styles["invalid"]}`}
+          className={`${styles["inputTitle"]} ${formValidState.title ? "" : styles["invalid"]}`}
         />
       </div>
       <div className={styles["form-row"]}>
