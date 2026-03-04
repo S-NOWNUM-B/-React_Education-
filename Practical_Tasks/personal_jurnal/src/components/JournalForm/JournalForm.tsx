@@ -1,5 +1,4 @@
 import styles from "./JournalForm.module.css";
-import cn from "classnames";
 
 import { type ComponentProps, useState } from "react";
 
@@ -96,10 +95,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           placeholder="Заголовок"
           value={formData.title}
           onChange={handleChange}
-          className={cn(
-            styles.inputTitle,
-            !formValidState.title && styles.invalid,
-          )}
+          className={`${styles["input"]} ${formValidState.title ? "" : styles["invalid"]}`}
         />
       </div>
       <div className={styles["form-row"]}>
@@ -113,7 +109,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           id="date"
           value={formData.date}
           onChange={handleChange}
-          className={cn(styles.input, !formValidState.date && styles.invalid)}
+          className={`${styles["input"]} ${formValidState.date ? "" : styles["invalid"]}`}
         />
       </div>
       <div className={styles["form-row"]}>
@@ -125,13 +121,11 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           type="text"
           name="tag"
           id="tag"
-          placeholder="Тег"
           value={formData.tag}
           onChange={handleChange}
-          className={cn(styles.input, !formValidState.tag && styles.invalid)}
+          className={`${styles["input"]} ${formValidState.tag ? "" : styles["invalid"]}`}
         />
       </div>
-
       <textarea
         name="text"
         cols={30}
@@ -139,7 +133,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         placeholder="Текст записи"
         value={formData.text}
         onChange={handleChange}
-        className={cn(styles.input, !formValidState.text && styles.invalid)}
+        className={`${styles["input"]} ${formValidState.text ? "" : styles["invalid"]}`}
       />
       <Button text="Сохранить" type="submit" />
     </form>
