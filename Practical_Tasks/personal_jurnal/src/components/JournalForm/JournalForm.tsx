@@ -102,13 +102,18 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           )}
         />
       </div>
-      <input
-        type="date"
-        name="date"
-        value={formData.date}
-        onChange={handleChange}
-        className={cn(styles.input, !formValidState.date && styles.invalid)}
-      />
+      <div>
+        <label htmlFor="date">Дата</label>
+        <input
+          type="date"
+          name="date"
+          id="date"
+          value={formData.date}
+          onChange={handleChange}
+          className={cn(styles.input, !formValidState.date && styles.invalid)}
+        />
+      </div>
+
       <input
         type="text"
         name="tag"
