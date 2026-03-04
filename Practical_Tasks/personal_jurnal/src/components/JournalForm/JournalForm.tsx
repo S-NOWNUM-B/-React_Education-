@@ -92,6 +92,9 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         value={formData.date}
         onChange={handleChange}
         required
+        style={{
+          border: formValidState.date ? "1px solid #E0234E" : "1px solid red",
+        }}
       />
       <input
         type="text"
@@ -99,6 +102,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         placeholder="Тег"
         value={formData.tag}
         onChange={handleChange}
+        style={{ border: "1px solid #E0234E" }}
       />
       <textarea
         name="text"
@@ -108,6 +112,9 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         value={formData.text}
         onChange={handleChange}
         required
+        style={{
+          border: formValidState.text ? "1px solid #E0234E" : "1px solid red",
+        }}
       />
       <Button text="Сохранить" type="submit" />
     </form>
