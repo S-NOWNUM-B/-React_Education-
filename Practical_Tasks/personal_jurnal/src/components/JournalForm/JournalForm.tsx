@@ -1,4 +1,5 @@
 import "./JournalForm.css";
+
 import { type ComponentProps, useState } from "react";
 
 import Button from "../Button/Button";
@@ -82,16 +83,14 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         placeholder="Заголовок"
         value={formData.title}
         onChange={handleChange}
-        required
-        className={formValidState.title ? "" : "invalid"}
+        className={`input ${formValidState.title ? "" : "invalid"}`}
       />
       <input
         type="date"
         name="date"
         value={formData.date}
         onChange={handleChange}
-        required
-        className={formValidState.date ? "" : "invalid"}
+        className={`input ${formValidState.date ? "" : "invalid"}`}
       />
       <input
         type="text"
@@ -99,7 +98,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         placeholder="Тег"
         value={formData.tag}
         onChange={handleChange}
-        className={formValidState.tag ? "" : "invalid"}
+        className={`input ${formValidState.tag ? "" : "invalid"}`}
       />
       <textarea
         name="text"
@@ -108,8 +107,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         placeholder="Текст записи"
         value={formData.text}
         onChange={handleChange}
-        required
-        className={formValidState.text ? "" : "invalid"}
+        className={`input ${formValidState.text ? "" : "invalid"}`}
       />
       <Button text="Сохранить" type="submit" />
     </form>

@@ -4,7 +4,17 @@
   gap: 30px;
 }
 
-.invalid {
-  border: 1px solid red;
-  background: rgb(66, 10, 10);
+.input {
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.input.invalid {
+  border: 2px solid #e0234e;
+  background-color: rgb(118, 23, 23);
+  color: #ffffff;
 }
