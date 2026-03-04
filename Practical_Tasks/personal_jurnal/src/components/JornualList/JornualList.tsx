@@ -1,4 +1,3 @@
-import "./JornualList.css";
 import { useMemo } from "react";
 
 import CardButton from "../CardButton/CardButton";

@@ -1,4 +1,4 @@
-import "./CardButton.css";
+import styles from "./CardButton.module.css";
 import type { ReactNode } from "react";
 import { cn } from "../../utils/classNames";
 
@@ -8,7 +8,9 @@ interface CardButtonProps {
 }
 
 function CardButton({ children, className }: CardButtonProps) {
-  return <button className={cn("card-button", className)}>{children}</button>;
+  return (
+    <button className={cn(styles.cardButton, className)}>{children}</button>
+  );
 }
 
 export default CardButton;

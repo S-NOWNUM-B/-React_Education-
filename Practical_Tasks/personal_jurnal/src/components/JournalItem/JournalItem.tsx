@@ -1,4 +1,4 @@
-import "./JournalItem.css";
+import styles from "./JournalItem.module.css";
 import { useMemo } from "react";
 import { formatDate } from "../../utils/date";
 
@@ -14,13 +14,13 @@ function JournalItem({ title, text, date, tag }: JournalItemProps) {
 
   return (
     <article>
-      <h2 className="journal-item__header">{title}</h2>
-      <div className="journal-item__body">
-        <time className="journal-item__date" dateTime={date.toISOString()}>
+      <h2 className={styles.header}>{title}</h2>
+      <div className={styles.body}>
+        <time className={styles.date} dateTime={date.toISOString()}>
           {formattedDate}
         </time>
-        <p className="journal-item__text">{text}</p>
-        {tag && <span className="journal-item__tag">{tag}</span>}
+        <p className={styles.text}>{text}</p>
+        {tag && <span className={styles.tag}>{tag}</span>}
       </div>
     </article>
   );

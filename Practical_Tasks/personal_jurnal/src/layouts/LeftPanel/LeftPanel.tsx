@@ -1,4 +1,4 @@
-import "./LeftPanel.css";
+import styles from "./LeftPanel.module.css";
 import type { ReactNode } from "react";
 
 interface LeftPanelProps {
@@ -6,7 +6,7 @@ interface LeftPanelProps {
 }
 
 function LeftPanel({ children }: LeftPanelProps) {
-  return <div className="left-panel">{children}</div>;
+  return <div className={styles.leftPanel}>{children}</div>;
 }
 
 export default LeftPanel;

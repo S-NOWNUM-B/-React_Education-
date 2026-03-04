@@ -1,4 +1,4 @@
-import "./Button.css";
+import styles from "./Button.module.css";
 import type { ComponentProps } from "react";
 
 interface ButtonProps extends ComponentProps<"button"> {
@@ -7,7 +7,7 @@ interface ButtonProps extends ComponentProps<"button"> {
 
 function Button({ text, ...props }: ButtonProps) {
   return (
-    <button className="button accent" {...props}>
+    <button className={`${styles.button} ${styles.accent}`} {...props}>
       {text}
     </button>
   );

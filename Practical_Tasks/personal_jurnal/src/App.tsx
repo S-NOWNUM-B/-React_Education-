@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./App.module.css";
 
 import { useState, useCallback } from "react";
 
@@ -50,7 +50,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <div className={styles.app}>
       <LeftPanel>
         <Header />
         <JournalAddButton />

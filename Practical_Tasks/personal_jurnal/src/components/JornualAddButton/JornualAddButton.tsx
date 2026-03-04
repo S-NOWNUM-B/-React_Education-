@@ -1,10 +1,9 @@
 import CardButton from "../CardButton/CardButton";
-
-import "./JornualAddButton.css";
+import styles from "./JornualAddButton.module.css";
 
 function JornualAddButton() {
   return (
-    <CardButton className="journal-add">
+    <CardButton className={styles.journalAdd}>
       <img src="/plus.svg" alt="Plus-icon" />
       Новое воспоминание
     </CardButton>
