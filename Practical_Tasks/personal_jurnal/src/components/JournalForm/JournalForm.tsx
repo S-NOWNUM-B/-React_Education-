@@ -32,13 +32,15 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     if (
       !formData.title?.trim().length ||
       !formData.text?.trim().length ||
-      !formData.date
+      !formData.date ||
+      !formData.tag?.trim().length
     ) {
       setFormValidState((state) => ({
         ...state,
-        title: false,
-        text: false,
-        date: false,
+        title: !formData.title?.trim().length ? false : true,
+        text: !formData.text?.trim().length ? false : true,
+        date: !formData.date ? false : true,
+        tag: !formData.tag?.trim().length ? false : true,
       }));
       isValidForm = false;
     } else {
@@ -47,6 +49,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         title: true,
         text: true,
         date: true,
+        tag: true,
       }));
     }
 
@@ -62,6 +65,14 @@ function JournalForm({ onSubmit }: JournalFormProps) {
       text: "",
       date: "",
       tag: "",
+    });
+
+    // Сброс состояния валидации
+    setFormValidState({
+      title: true,
+      text: true,
+      date: true,
+      tag: true,
     });
   };
 

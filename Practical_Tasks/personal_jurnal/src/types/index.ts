@@ -3,12 +3,12 @@ export interface JournalItem {
   title: string;
   text: string;
   date: Date;
-  tag?: string;
+  tag: string;
 }
 
 export interface JournalFormData {
   title: string;
   text: string;
   date: string;
-  tag?: string;
+  tag: string;
 }
