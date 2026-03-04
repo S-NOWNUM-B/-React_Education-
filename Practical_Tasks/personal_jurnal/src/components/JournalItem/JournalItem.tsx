@@ -6,9 +6,10 @@ interface JournalItemProps {
   title: string;
   text: string;
   date: Date;
+  tag?: string;
 }
 
-function JournalItem({ title, text, date }: JournalItemProps) {
+function JournalItem({ title, text, date, tag }: JournalItemProps) {
   const formattedDate = useMemo(() => formatDate(date), [date]);
 
   return (
@@ -19,6 +20,7 @@ function JournalItem({ title, text, date }: JournalItemProps) {
           {formattedDate}
         </time>
         <p className="journal-item__text">{text}</p>
+        {tag && <span className="journal-item__tag">{tag}</span>}
       </div>
     </article>
   );

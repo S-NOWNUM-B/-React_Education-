@@ -17,12 +17,14 @@ const INITIAL_DATA: JournalItem[] = [
     title: "Подготовка к обновлению курсов",
     text: "Горные походы открывают удивительные природные ландшафт",
     date: new Date("2023-07-18T17:23:14+03:00"),
+    tag: "Работа",
   },
   {
     id: 2,
     title: "Поход в годы",
     text: "Думал, что очень много времени",
     date: new Date("2023-07-18T17:23:14+03:00"),
+    tag: "Горы",
   },
 ];
 
@@ -38,10 +40,10 @@ function App() {
         ...prevItems,
         {
           id: maxId + 1,
+          tag: item.tag,
           title: item.title,
           text: item.text,
           date: new Date(item.date),
-          tag: item.tag,
         },
       ];
     });

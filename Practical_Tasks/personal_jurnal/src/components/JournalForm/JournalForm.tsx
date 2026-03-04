@@ -20,6 +20,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     title: true,
     text: true,
     date: true,
+    tag: true,
   });
 
   const handleSubmit: ComponentProps<"form">["onSubmit"] = (e) => {
@@ -82,9 +83,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         value={formData.title}
         onChange={handleChange}
         required
-        style={{
-          border: formValidState.title ? "1px solid #E0234E" : "1px solid red",
-        }}
+        className={formValidState.title ? "" : "invalid"}
       />
       <input
         type="date"
@@ -92,9 +91,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         value={formData.date}
         onChange={handleChange}
         required
-        style={{
-          border: formValidState.date ? "1px solid #E0234E" : "1px solid red",
-        }}
+        className={formValidState.date ? "" : "invalid"}
       />
       <input
         type="text"
@@ -102,7 +99,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         placeholder="Тег"
         value={formData.tag}
         onChange={handleChange}
-        style={{ border: "1px solid #E0234E" }}
+        className={formValidState.tag ? "" : "invalid"}
       />
       <textarea
         name="text"
@@ -112,9 +109,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         value={formData.text}
         onChange={handleChange}
         required
-        style={{
-          border: formValidState.text ? "1px solid #E0234E" : "1px solid red",
-        }}
+        className={formValidState.text ? "" : "invalid"}
       />
       <Button text="Сохранить" type="submit" />
     </form>
