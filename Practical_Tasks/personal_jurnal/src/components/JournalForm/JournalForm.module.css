@@ -29,3 +29,15 @@
   font-family: "Source Sans 3" sans-serif;
   border-bottom: 1px solid #ccc;
 }
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 100px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+}

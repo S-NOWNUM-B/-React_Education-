@@ -102,26 +102,40 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           )}
         />
       </div>
-      <div>
-        <label htmlFor="date">Дата</label>
+      <div className={styles["from-row"]}>
+        <label htmlFor="date" className={styles["form-label"]}>
+          <img src="/calendar.svg" alt="иконка календаря" />
+          <span>Дата</span>
+        </label>
         <input
           type="date"
           name="date"
           id="date"
           value={formData.date}
           onChange={handleChange}
-          className={cn(styles.input, !formValidState.date && styles.invalid)}
+          className={cn(
+            styles.input, !formValidState.date && styles.invalid
+          )}
+        />
+      </div>
+      <div>
+        <label htmlFor="tag" className={styles["form-label"]}>
+          <img src="/folder.svg" alt="иконка папки" />
+          <span>Метки</span>
+        </label>
+        <input
+          type="text"
+          name="tag"
+          id="tag"
+          placeholder="Тег"
+          value={formData.tag}
+          onChange={handleChange}
+          className={cn(
+            styles.input, !formValidState.tag && styles.invalid
+          )}
         />
       </div>
 
-      <input
-        type="text"
-        name="tag"
-        placeholder="Тег"
-        value={formData.tag}
-        onChange={handleChange}
-        className={cn(styles.input, !formValidState.tag && styles.invalid)}
-      />
       <textarea
         name="text"
         cols={30}
@@ -129,7 +143,9 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         placeholder="Текст записи"
         value={formData.text}
         onChange={handleChange}
-        className={cn(styles.input, !formValidState.text && styles.invalid)}
+        className={cn(
+          styles.input, !formValidState.text && styles.invalid
+        )}
       />
       <Button text="Сохранить" type="submit" />
     </form>
