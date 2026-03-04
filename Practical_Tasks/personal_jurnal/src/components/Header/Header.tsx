@@ -1,7 +1,7 @@
-import "./Header.css";
+import styles from "./Header.module.css";
 
 function Header() {
-  return <img src="logo.svg" alt="Logo-website" className="logo" />;
+  return <img  src="logo.svg" alt="Logo-website" className={styles.logo} />;
 }
 
 export default Header;
