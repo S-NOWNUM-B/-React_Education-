@@ -1,5 +1,5 @@
 import "./JournalForm.css";
-import { type FormEvent, useState } from "react";
+import { type ComponentProps, useState } from "react";
 
 import Button from "../Button/Button";
 import type { JournalFormData } from "../../types";
@@ -16,10 +16,39 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     tag: "",
   });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [formValidState, setFormValidState] = useState({
+    title: true,
+    text: true,
+    date: true,
+  });
+
+  const handleSubmit: ComponentProps<"form">["onSubmit"] = (e) => {
     e.preventDefault();
 
-    if (!formData.title.trim() || !formData.text.trim() || !formData.date) {
+    let isValidForm = true;
+
+    if (
+      !formData.title?.trim().length ||
+      !formData.text?.trim().length ||
+      !formData.date
+    ) {
+      setFormValidState((state) => ({
+        ...state,
+        title: false,
+        text: false,
+        date: false,
+      }));
+      isValidForm = false;
+    } else {
+      setFormValidState((state) => ({
+        ...state,
+        title: true,
+        text: true,
+        date: true,
+      }));
+    }
+
+    if (!isValidForm) {
       return;
     }
 
@@ -53,6 +82,9 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         value={formData.title}
         onChange={handleChange}
         required
+        style={{
+          border: formValidState.title ? "1px solid #E0234E" : "1px solid red",
+        }}
       />
       <input
         type="date"
