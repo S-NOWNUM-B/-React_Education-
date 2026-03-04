@@ -113,10 +113,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           id="date"
           value={formData.date}
           onChange={handleChange}
-          className={cn(
-            styles.inputTitle,
-            !formValidState.title && styles.invalid,
-          )}
+          className={cn(styles.input, !formValidState.date && styles.invalid)}
         />
       </div>
       <div className={styles["form-row"]}>
@@ -131,10 +128,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           placeholder="Тег"
           value={formData.tag}
           onChange={handleChange}
-          className={cn(
-            styles.inputTitle,
-            !formValidState.title && styles.invalid,
-          )}
+          className={cn(styles.input, !formValidState.tag && styles.invalid)}
         />
       </div>
 
@@ -145,10 +139,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         placeholder="Текст записи"
         value={formData.text}
         onChange={handleChange}
-        className={cn(
-            styles.inputTitle,
-            !formValidState.title && styles.invalid,
-          )}
+        className={cn(styles.input, !formValidState.text && styles.invalid)}
       />
       <Button text="Сохранить" type="submit" />
     </form>
