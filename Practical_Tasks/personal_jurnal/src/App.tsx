@@ -11,25 +11,8 @@ import JournalForm from "./components/JournalForm/JournalForm";
 
 import type { JournalItem, JournalFormData } from "./types";
 
-const INITIAL_DATA: JournalItem[] = [
-  //{
-  //  id: 1,
-  //  title: "Подготовка к обновлению курсов",
-  //  text: "Горные походы открывают удивительные природные ландшафт",
-  //  date: new Date("2023-07-18T17:23:14+03:00"),
-  //  tag: "Работа",
-  //},
-  //{
-  //  id: 2,
-  //  title: "Поход в годы",
-  //  text: "Думал, что очень много времени",
-  //  date: new Date("2023-07-18T17:23:14+03:00"),
-  //  tag: "Горы",
-  //},
-];
-
 function App() {
-  const [items, setItems] = useState<JournalItem[]>(INITIAL_DATA);
+  const [items, setItems] = useState<JournalItem[]>([]);
 
   const addItem = useCallback((item: JournalFormData) => {
     setItems((prevItems) => {
