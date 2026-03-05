@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import styles from "./App.module.css";
 
-import { useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import Header from "./components/Header/Header";
 import LeftPanel from "./layouts/LeftPanel/LeftPanel";
@@ -13,6 +14,20 @@ import type { JournalItem, JournalFormData } from "./types";
 
 function App() {
   const [items, setItems] = useState<JournalItem[]>([]);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("data") || "null") as
+      | JournalItem[]
+      | null;
+    if (data) {
+      setItems(
+        data.map((item) => ({
+          ...item,
+          date: new Date(item.date),
+        })),
+      );
+    }
+  }, []);
 
   const addItem = useCallback((item: JournalFormData) => {
     setItems((prevItems) => {
