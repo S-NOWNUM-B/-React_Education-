@@ -38,7 +38,9 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         setFormValidState(INITIAL_VALID_STATE);
       }, 2000);
 
-      return () => clearTimeout(timerId);
+      return () => {
+        clearTimeout(timerId);
+      };
     }
   }, [formValidState]);
 
