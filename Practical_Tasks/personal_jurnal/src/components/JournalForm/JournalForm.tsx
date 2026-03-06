@@ -1,6 +1,6 @@
 import styles from "./JournalForm.module.css";
 
-import { type ComponentProps, useState } from "react";
+import { type ComponentProps, useState, useEffect } from "react";
 
 import Button from "../Button/Button";
 import type { JournalFormData } from "../../types";
@@ -9,71 +9,60 @@ interface JournalFormProps {
   onSubmit: (item: JournalFormData) => void;
 }
 
-function JournalForm({ onSubmit }: JournalFormProps) {
-  const [formData, setFormData] = useState<JournalFormData>({
-    title: "",
-    post: "",
-    date: "",
-    tag: "",
-  });
+const INITIAL_FORM_DATA = {
+  title: "",
+  post: "",
+  date: "",
+  tag: "",
+};
 
-  const [formValidState, setFormValidState] = useState({
-    title: true,
-    post: true,
-    date: true,
-    tag: true,
-  });
+const INITIAL_VALID_STATE = {
+  title: true,
+  post: true,
+  date: true,
+  tag: true,
+};
+
+function JournalForm({ onSubmit }: JournalFormProps) {
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [formValidState, setFormValidState] = useState(INITIAL_VALID_STATE);
+
+  useEffect(() => {
+    if (
+      !formValidState.title ||
+      !formValidState.post ||
+      !formValidState.date ||
+      !formValidState.tag
+    ) {
+      const timerId = setTimeout(() => {
+        setFormValidState(INITIAL_VALID_STATE);
+      }, 2000);
+
+      return () => clearTimeout(timerId);
+    }
+  }, [formValidState]);
 
   const handleSubmit: ComponentProps<"form">["onSubmit"] = (e) => {
     e.preventDefault();
 
-    let isValidForm = true;
+    const validation = {
+      title: formData.title.trim().length > 0,
+      post: formData.post.trim().length > 0,
+      date: formData.date.length > 0,
+      tag: formData.tag.trim().length > 0,
+    };
 
-    if (
-      !formData.title?.trim().length ||
-      !formData.post?.trim().length ||
-      !formData.date ||
-      !formData.tag?.trim().length
-    ) {
-      setFormValidState((state) => ({
-        ...state,
-        title: !formData.title?.trim().length ? false : true,
-        post: !formData.post?.trim().length ? false : true,
-        date: !formData.date ? false : true,
-        tag: !formData.tag?.trim().length ? false : true,
-      }));
-      isValidForm = false;
-    } else {
-      setFormValidState((state) => ({
-        ...state,
-        title: true,
-        post: true,
-        date: true,
-        tag: true,
-      }));
-    }
+    setFormValidState(validation);
+
+    const isValidForm = Object.values(validation).every((isValid) => isValid);
 
     if (!isValidForm) {
       return;
     }
 
     onSubmit(formData);
-
-    // Очистка формы после отправки
-    setFormData({
-      title: "",
-      post: "",
-      date: "",
-      tag: "",
-    });
-
-    // Сброс состояния валидации
-    setFormValidState({
-      title: true,
-      post: true,
-      date: true,
-      tag: true,
-    });
+    setFormData(INITIAL_FORM_DATA);
+    setFormValidState(INITIAL_VALID_STATE);
   };
 
   const handleChange = (
