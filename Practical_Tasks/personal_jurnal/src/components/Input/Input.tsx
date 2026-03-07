@@ -1,7 +1,8 @@
 import styles from "./Input.module.css";
 import cn from "classnames";
+import { forwardRef } from "react";
 
-const input = forwiordRef(function Input({ className, isValid, appearence, ...props }, ref) {
+const input = forwardRef(function Input({ className, isValid = true, appearence, ...props }, ref) {
   return (
     <input
       {...props}

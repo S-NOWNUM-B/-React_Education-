@@ -77,6 +77,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           type="text"
           name="title"
           ref={titleRef}
+		  inValid={isValid.title}
           onChange={onChange}
           value={values.title}
           className={cn(styles["input-title"], {
@@ -91,9 +92,10 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         </label>
         <Input
           type="date"
-          ref={dateRef}
-          onChange={onChange}
           name="date"
+          ref={dateRef}
+		  inValid={isValid.date}
+          onChange={onChange}
           value={values.date}
           id="date"
           className={cn(styles["input"], {
@@ -107,17 +109,19 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           <span>Метки</span>
         </label>
         <Input
-          type="text"
-          onChange={onChange}
           id="tag"
-          value={values.tag}
+          type="text"
           name="tag"
+		  inValid={isValid.tag}
+          onChange={onChange}
+          value={values.tag}
           className={styles["input"]}
         />
       </div>
       <textarea
         name="post"
         ref={postRef}
+		inValid={isValid.post}
         onChange={onChange}
         value={values.post}
         cols={30}
