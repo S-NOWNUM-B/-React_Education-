@@ -63,7 +63,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     });
   };
 
-  const addJournalItem = (e: { preventDefault: () => void; }) => {
+  const addJournalItem = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     dispatchForm({ type: "SUBMIT" });
   };
@@ -73,10 +73,10 @@ function JournalForm({ onSubmit }: JournalFormProps) {
       <div>
         <input
           type="text"
+          name="title"
           ref={titleRef}
           onChange={onChange}
           value={values.title}
-          name="title"
           className={cn(styles["input-title"], {
             [styles["invalid"]]: !isValid.title,
           })}
