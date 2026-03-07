@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import { useEffect, useReducer } from "react";
 import cn from "classnames";
 import { INITIAL_STATE, formReducer } from "./JournalForm.state";
-import type { ChangeEvent, FormEvent } from "react";
+import type { ChangeEvent } from "react";
 import type { JournalFormData } from "../../types";
 
 interface JournalFormProps {
@@ -43,7 +43,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     });
   };
 
-  const addJournalItem = (e: FormEvent<HTMLFormElement>) => {
+  const addJournalItem = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     dispatchForm({ type: "SUBMIT" });
   };
