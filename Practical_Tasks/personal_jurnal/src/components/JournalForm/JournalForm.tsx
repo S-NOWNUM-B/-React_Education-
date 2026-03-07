@@ -5,6 +5,7 @@ import cn from "classnames";
 import { INITIAL_STATE, formReducer } from "./JournalForm.state";
 import type { ChangeEvent } from "react";
 import type { JournalFormData } from "../../types";
+import type { FormState } from "./JournalForm.state";
 
 interface JournalFormProps {
   onSubmit: (data: JournalFormData) => void;
@@ -17,7 +18,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
   const dateRef = useRef<HTMLInputElement>(null);
   const postRef = useRef<HTMLTextAreaElement>(null);
 
-  const focusError = (isValid) => {
+  const focusError = (isValid: FormState["isValid"]) => {
     switch (true) {
       case !isValid.title:
         titleRef.current?.focus();
@@ -62,7 +63,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     });
   };
 
-  const addJournalItem = (e: { preventDefault: () => void }) => {
+  const addJournalItem = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     dispatchForm({ type: "SUBMIT" });
   };
