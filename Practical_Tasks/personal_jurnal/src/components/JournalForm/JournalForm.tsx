@@ -17,11 +17,27 @@ function JournalForm({ onSubmit }: JournalFormProps) {
   const dateRef = useRef<HTMLInputElement>(null);
   const postRef = useRef<HTMLTextAreaElement>(null);
 
+  const focusError = (isValid) => {
+    switch (true) {
+      case !isValid.title:
+        titleRef.current?.focus();
+        break;
+      case !isValid.date:
+        dateRef.current?.focus();
+        break;
+      case !isValid.post:
+        postRef.current?.focus();
+        break;
+      default:
+        break;
+    }
+  };
+
   useEffect(() => {
     let timerId: ReturnType<typeof setTimeout> | undefined;
     if (!isValid.date || !isValid.post || !isValid.title) {
+      focusError(isValid);
       timerId = setTimeout(() => {
-        console.log("Очистка состояния");
         dispatchForm({ type: "RESET_VALIDITY" });
       }, 2000);
     }
