@@ -1,6 +1,6 @@
 import styles from "./JournalForm.module.css";
 import Button from "../Button/Button";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import cn from "classnames";
 import { INITIAL_STATE, formReducer } from "./JournalForm.state";
 import type { ChangeEvent } from "react";
@@ -13,6 +13,9 @@ interface JournalFormProps {
 function JournalForm({ onSubmit }: JournalFormProps) {
   const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
   const { isValid, isFormReadyToSubmit, values } = formState;
+  const titleRef = useRef<HTMLInputElement>(null);
+  const dateRef = useRef<HTMLInputElement>(null);
+  const postRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     let timerId: ReturnType<typeof setTimeout> | undefined;
@@ -43,7 +46,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
     });
   };
 
-  const addJournalItem = (e: { preventDefault: () => void; }) => {
+  const addJournalItem = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     dispatchForm({ type: "SUBMIT" });
   };
@@ -53,6 +56,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
       <div>
         <input
           type="text"
+          ref={titleRef}
           onChange={onChange}
           value={values.title}
           name="title"
@@ -68,6 +72,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
         </label>
         <input
           type="date"
+          ref={dateRef}
           onChange={onChange}
           name="date"
           value={values.date}
@@ -93,6 +98,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
       </div>
       <textarea
         name="post"
+        ref={postRef}
         onChange={onChange}
         value={values.post}
         cols={30}
