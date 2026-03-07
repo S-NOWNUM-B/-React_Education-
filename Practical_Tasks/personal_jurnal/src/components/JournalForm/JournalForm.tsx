@@ -1,4 +1,5 @@
 import styles from "./JournalForm.module.css";
+
 import Button from "../Button/Button";
 import { useEffect, useReducer, useRef } from "react";
 import cn from "classnames";
@@ -6,6 +7,7 @@ import { INITIAL_STATE, formReducer } from "./JournalForm.state";
 import type { ChangeEvent } from "react";
 import type { JournalFormData } from "../../types";
 import type { FormState } from "./JournalForm.state";
+import Input from "../Input/Input";
 
 interface JournalFormProps {
   onSubmit: (data: JournalFormData) => void;
@@ -71,7 +73,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
   return (
     <form className={styles["journal-form"]} onSubmit={addJournalItem}>
       <div>
-        <input
+        <Input
           type="text"
           name="title"
           ref={titleRef}
@@ -87,7 +89,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           <img src="/calendar.svg" alt="Иконка календаря" />
           <span>Дата</span>
         </label>
-        <input
+        <Input
           type="date"
           ref={dateRef}
           onChange={onChange}
@@ -104,7 +106,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
           <img src="/folder.svg" alt="Иконка папки" />
           <span>Метки</span>
         </label>
-        <input
+        <Input
           type="text"
           onChange={onChange}
           id="tag"
