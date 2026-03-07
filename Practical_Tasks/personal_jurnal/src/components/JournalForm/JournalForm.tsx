@@ -15,7 +15,7 @@ function JournalForm({ onSubmit }: JournalFormProps) {
   const { isValid, isFormReadyToSubmit, values } = formState;
 
   useEffect(() => {
-    let timerId;
+    let timerId: ReturnType<typeof setTimeout> | undefined;
     if (!isValid.date || !isValid.post || !isValid.title) {
       timerId = setTimeout(() => {
         console.log("Очистка состояния");
@@ -23,7 +23,9 @@ function JournalForm({ onSubmit }: JournalFormProps) {
       }, 2000);
     }
     return () => {
-      clearTimeout(timerId);
+      if (timerId) {
+        clearTimeout(timerId);
+      }
     };
   }, [isValid]);
 
