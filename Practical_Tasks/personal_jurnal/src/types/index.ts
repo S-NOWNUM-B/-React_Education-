@@ -1,7 +1,7 @@
 export interface JournalItem {
   id: number;
   title: string;
-  text: string;
+  post: string;
   date: Date;
   tag: string;
 }
