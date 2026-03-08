@@ -8,20 +8,34 @@ import LeftPanel from "./layouts/LeftPanel/LeftPanel";
 import type { JournalFormData, JournalItem } from "./types";
 import { useLocalStorage } from "./hooks/use-localstorage.hook";
 
-function App() {
-  const [items, setItems] = useLocalStorage<JournalItem[]>([]);
+type StoredJournalItem = Omit<JournalItem, "date"> & { date: string };
 
-  const addItem = item => {
-    setItems([...items.map(i => ({
-      ...i,
-      date: new Date(i.date)
-    })), {
+function mapItems(items: StoredJournalItem[] | undefined): JournalItem[] {
+  if (!items) {
+    return [];
+  }
+  return items.map((i) => ({
+    ...i,
+    date: new Date(i.date),
+  }));
+}
+
+function App() {
+  const [items, setItems] = useLocalStorage<StoredJournalItem[]>("data");
+
+  const addItem = (item: JournalFormData) => {
+    const currentItems = items || [];
+    const newItem: StoredJournalItem = {
       post: item.post,
       title: item.title,
-      date: new Date(item.date),
+      date: new Date(item.date).toISOString(),
       tag: item.tag,
-      id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1
-    }]);
+      id:
+        currentItems.length > 0
+          ? Math.max(...currentItems.map((i) => i.id)) + 1
+          : 1,
+    };
+    setItems([...currentItems, newItem]);
   };
 
   return (
@@ -29,7 +43,7 @@ function App() {
       <LeftPanel>
         <Header />
         <JournalAddButton />
-        <JournalList items={items} />
+        <JournalList items={mapItems(items)} />
       </LeftPanel>
       <Body>
         <JournalForm onSubmit={addItem} />
