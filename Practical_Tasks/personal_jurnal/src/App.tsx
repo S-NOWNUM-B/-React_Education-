@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import JournalAddButton from "./components/JournalAddButton/JournalAddButton";
@@ -7,36 +6,13 @@ import JournalList from "./components/JournalList/JournalList";
 import Body from "./layouts/Body/Body";
 import LeftPanel from "./layouts/LeftPanel/LeftPanel";
 import type { JournalFormData, JournalItem } from "./types";
+import { useLocalStorage } from "./hooks/use-localstorage.hook";
 
 function App() {
-  const [items, setItems] = useState<JournalItem[]>([]);
-
-  useEffect(() => {
-    const rawData = localStorage.getItem("data");
-    if (!rawData) {
-      return;
-    }
-
-    const data = JSON.parse(rawData) as Array<
-      Omit<JournalItem, "date"> & { date: string }
-    >;
-    setItems(
-      data.map((item) => ({
-        ...item,
-        date: new Date(item.date),
-      })),
-    );
-  }, []);
-
-  useEffect(() => {
-    if (items.length) {
-      console.log("Запись!");
-      localStorage.setItem("data", JSON.stringify(items));
-    }
-  }, [items]);
+  const [items, setItems] = useLocalStorage<JournalItem[]>([]);
 
   const addItem = (item: JournalFormData) => {
-    setItems((oldItems) => [
+    setItems((...items) => [
       ...oldItems,
       {
         post: item.post,
