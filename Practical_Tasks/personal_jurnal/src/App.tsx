@@ -5,10 +5,8 @@ import JournalForm from "./components/JournalForm/JournalForm";
 import JournalList from "./components/JournalList/JournalList";
 import Body from "./layouts/Body/Body";
 import LeftPanel from "./layouts/LeftPanel/LeftPanel";
-import type { JournalFormData, JournalItem } from "./types";
+import type { JournalFormData, JournalItem, StoredJournalItem } from "./types";
 import { useLocalStorage } from "./hooks/use-localstorage.hook";
-
-type StoredJournalItem = Omit<JournalItem, "date"> & { date: string };
 
 function mapItems(items: StoredJournalItem[] | undefined): JournalItem[] {
   if (!items) {

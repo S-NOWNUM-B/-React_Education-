@@ -12,3 +12,5 @@ export interface JournalFormData {
   date: string;
   tag: string;
 }
+
+export type StoredJournalItem = Omit<JournalItem, "date"> & { date: string };
