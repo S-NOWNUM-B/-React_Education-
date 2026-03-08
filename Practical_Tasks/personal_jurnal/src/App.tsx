@@ -11,18 +11,17 @@ import { useLocalStorage } from "./hooks/use-localstorage.hook";
 function App() {
   const [items, setItems] = useLocalStorage<JournalItem[]>([]);
 
-  const addItem = (item: JournalFormData) => {
-    setItems((...items) => [
-      ...oldItems,
-      {
-        post: item.post,
-        title: item.title,
-        tag: item.tag,
-        date: new Date(item.date),
-        id:
-          oldItems.length > 0 ? Math.max(...oldItems.map((i) => i.id)) + 1 : 1,
-      },
-    ]);
+  const addItem = item => {
+    setItems([...items.map(i => ({
+      ...i,
+      date: new Date(i.date)
+    })), {
+      post: item.post,
+      title: item.title,
+      date: new Date(item.date),
+      tag: item.tag,
+      id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1
+    }]);
   };
 
   return (
