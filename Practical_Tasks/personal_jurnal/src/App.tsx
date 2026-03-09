@@ -5,7 +5,12 @@ import JournalForm from "./components/JournalForm/JournalForm";
 import JournalList from "./components/JournalList/JournalList";
 import Body from "./layouts/Body/Body";
 import LeftPanel from "./layouts/LeftPanel/LeftPanel";
-import type { JournalFormData, JournalItem, StoredJournalItem } from "./types";
+import type {
+  JournalFormData,
+  JournalItem,
+  OnUserChange,
+  StoredJournalItem,
+} from "./types";
 import { useLocalStorage } from "./hooks/use-localstorage.hook";
 
 function mapItems(items: StoredJournalItem[] | undefined): JournalItem[] {
@@ -20,6 +25,10 @@ function mapItems(items: StoredJournalItem[] | undefined): JournalItem[] {
 
 function App() {
   const [items, setItems] = useLocalStorage<StoredJournalItem[]>("data");
+
+  const handleUserChange: OnUserChange = () => {
+    // User selection can be used later for filtering journal records.
+  };
 
   const addItem = (item: JournalFormData) => {
     const currentItems = items || [];
@@ -39,7 +48,7 @@ function App() {
   return (
     <div className="app">
       <LeftPanel>
-        <Header changedUser={}/>
+        <Header changedUser={handleUserChange} />
         <JournalAddButton />
         <JournalList items={mapItems(items)} />
       </LeftPanel>

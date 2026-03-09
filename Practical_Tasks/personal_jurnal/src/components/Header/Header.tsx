@@ -1,16 +1,16 @@
 import SelectUser from "../SelectUser/SelectUser";
 import styles from "./Header.module.css";
+import type { OnUserChange } from "../../types";
 
-function Header({ changedUser }) {
-  const changeUser = (e: { target: { value: unknown } }) => {
-    changedUser(e.target.value);
-    console.log(e.target.value);
-  };
+interface HeaderProps {
+  changedUser: OnUserChange;
+}
 
+function Header({ changedUser }: HeaderProps) {
   return (
     <>
       <img className={styles.logo} src="/logo.svg" alt="Логотип журнала" />
-      <SelectUser changedUser={changeUser} />
+      <SelectUser changedUser={changedUser} />
     </>
   );
 }

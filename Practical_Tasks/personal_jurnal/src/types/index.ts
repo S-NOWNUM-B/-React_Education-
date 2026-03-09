@@ -14,3 +14,7 @@ export interface JournalFormData {
 }
 
 export type StoredJournalItem = Omit<JournalItem, "date"> & { date: string };
+
+export type UserId = "user1" | "user2" | "user3";
+
+export type OnUserChange = (userId: UserId) => void;
