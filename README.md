@@ -46,7 +46,7 @@ npm install && npm run dev
 ### Запуск проектов
 
 ```bash
-cd Practical_Tasks/00_nameProject
+cd Practical_Tasks/nameProject
 npm install && npm run dev
 ```
 
