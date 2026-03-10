@@ -1,21 +1,22 @@
 import type { ChangeEvent } from "react";
-import type { OnUserChange, UserId } from "../../types";
+import type { OnUserChange } from "../../types";
 
 interface SelectUserProps {
   changedUser: OnUserChange;
+  currentUserId: number;
 }
 
-function SelectUser({ changedUser }: SelectUserProps) {
+function SelectUser({ changedUser, currentUserId }: SelectUserProps) {
   const changeUser = (e: ChangeEvent<HTMLSelectElement>) => {
-    changedUser(e.target.value as UserId);
+    changedUser(Number(e.target.value));
   };
 
   return (
     <>
-      <select name="user" id="user" onChange={changeUser}>
-        <option value="user1">Стас</option>
-        <option value="user2">Петя</option>
-        <option value="user3">Вася</option>
+      <select name="user" id="user" value={currentUserId} onChange={changeUser}>
+        <option value="1">Стас</option>
+        <option value="2">Петя</option>
+        <option value="3">Вася</option>
       </select>
     </>
   );
