@@ -56,7 +56,7 @@ function App() {
         updated.map((i) => ({
           ...i,
           date: i.date.toISOString(),
-        }))
+        })),
       );
     } else {
       // Добавление новой записи
@@ -76,7 +76,7 @@ function App() {
         updated.map((i) => ({
           ...i,
           date: i.date.toISOString(),
-        }))
+        })),
       );
     }
 
@@ -90,7 +90,7 @@ function App() {
       updated.map((i) => ({
         ...i,
         date: i.date.toISOString(),
-      }))
+      })),
     );
     setSelectedItem(undefined);
   };
