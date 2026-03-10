@@ -1,17 +1,18 @@
 import "./Button.css";
-import type { MouseEventHandler } from "react";
+import { memo } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 
 interface ButtonProps {
-  text: string;
+  children: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-function Button({ text, onClick }: ButtonProps) {
+function Button({ children, onClick }: ButtonProps) {
   return (
     <button className="button accent" onClick={onClick}>
-      {text}
+      {children}
     </button>
   );
 }
 
-export default Button;
+export default memo(Button);

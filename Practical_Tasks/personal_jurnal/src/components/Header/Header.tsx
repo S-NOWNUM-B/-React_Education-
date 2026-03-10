@@ -1,5 +1,5 @@
 import SelectUser from "../SelectUser/SelectUser";
-import styles from "./Header.module.css";
+import Logo from "../Logo/Logo";
 import type { OnUserChange } from "../../types";
 
 interface HeaderProps {
@@ -9,7 +9,7 @@ interface HeaderProps {
 function Header({ changedUser }: HeaderProps) {
   return (
     <>
-      <img className={styles.logo} src="/logo.svg" alt="Логотип журнала" />
+      <Logo image="/logo.svg" />
       <SelectUser changedUser={changedUser} />
     </>
   );
