@@ -12,6 +12,8 @@ import type {
   StoredJournalItem,
 } from "./types";
 import { useLocalStorage } from "./hooks/use-localstorage.hook";
+import { useContext, useState } from "react";
+import { UserContext } from "./context/user.context";
 
 function mapItems(items: StoredJournalItem[] | undefined): JournalItem[] {
   if (!items) {
@@ -25,35 +27,95 @@ function mapItems(items: StoredJournalItem[] | undefined): JournalItem[] {
 
 function App() {
   const [items, setItems] = useLocalStorage<StoredJournalItem[]>("data");
+  const [selectedItem, setSelectedItem] = useState<JournalItem | undefined>();
+  const { userId, setUserId } = useContext(UserContext);
 
-  const handleUserChange: OnUserChange = () => {
-    // User selection can be used later for filtering journal records.
+  const handleUserChange: OnUserChange = (newUserId) => {
+    setUserId(newUserId);
+    setSelectedItem(undefined);
   };
 
   const addItem = (item: JournalFormData) => {
-    const currentItems = items || [];
-    const newItem: StoredJournalItem = {
-      post: item.post,
-      title: item.title,
-      date: new Date(item.date).toISOString(),
-      tag: item.tag,
-      id:
-        currentItems.length > 0
-          ? Math.max(...currentItems.map((i) => i.id)) + 1
-          : 1,
-    };
-    setItems([...currentItems, newItem]);
+    const currentItems = mapItems(items);
+
+    if (selectedItem && currentItems.some((i) => i.id === selectedItem.id)) {
+      // Редактирование существующей записи
+      const updated = currentItems.map((i) => {
+        if (i.id === selectedItem.id) {
+          return {
+            ...i,
+            title: item.title,
+            post: item.post,
+            date: new Date(item.date),
+            tag: item.tag,
+          };
+        }
+        return i;
+      });
+      setItems(
+        updated.map((i) => ({
+          ...i,
+          date: i.date.toISOString(),
+        }))
+      );
+    } else {
+      // Добавление новой записи
+      const newItem: JournalItem = {
+        title: item.title,
+        post: item.post,
+        date: new Date(item.date),
+        tag: item.tag,
+        userId: item.userId,
+        id:
+          currentItems.length > 0
+            ? Math.max(...currentItems.map((i) => i.id)) + 1
+            : 1,
+      };
+      const updated = [...currentItems, newItem];
+      setItems(
+        updated.map((i) => ({
+          ...i,
+          date: i.date.toISOString(),
+        }))
+      );
+    }
+
+    setSelectedItem(undefined);
+  };
+
+  const deleteItem = (id: number) => {
+    const currentItems = mapItems(items);
+    const updated = currentItems.filter((i) => i.id !== id);
+    setItems(
+      updated.map((i) => ({
+        ...i,
+        date: i.date.toISOString(),
+      }))
+    );
+    setSelectedItem(undefined);
+  };
+
+  const clearForm = () => {
+    setSelectedItem(undefined);
   };
 
   return (
     <div className="app">
       <LeftPanel>
-        <Header changedUser={handleUserChange} />
-        <JournalAddButton />
-        <JournalList items={mapItems(items)} />
+        <Header changedUser={handleUserChange} currentUserId={userId} />
+        <JournalAddButton clearForm={clearForm} />
+        <JournalList
+          items={mapItems(items)}
+          setItem={setSelectedItem}
+          currentUserId={userId}
+        />
       </LeftPanel>
       <Body>
-        <JournalForm onSubmit={addItem} />
+        <JournalForm
+          onSubmit={addItem}
+          onDelete={deleteItem}
+          data={selectedItem}
+        />
       </Body>
     </div>
   );
