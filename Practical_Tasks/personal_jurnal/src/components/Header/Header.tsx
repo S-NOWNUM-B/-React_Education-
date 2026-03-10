@@ -4,13 +4,14 @@ import type { OnUserChange } from "../../types";
 
 interface HeaderProps {
   changedUser: OnUserChange;
+  currentUserId: number;
 }
 
-function Header({ changedUser }: HeaderProps) {
+function Header({ changedUser, currentUserId }: HeaderProps) {
   return (
     <>
       <Logo image="/logo.svg" />
-      <SelectUser changedUser={changedUser} />
+      <SelectUser changedUser={changedUser} currentUserId={currentUserId} />
     </>
   );
 }
